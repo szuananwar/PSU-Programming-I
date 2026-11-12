@@ -1,0 +1,598 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Philander Smith University | Dr. Suzan Anwar | Programming I C++ Lab</title>
+<style>
+:root{--maroon:#6c1631;--navy:#152c41;--gold:#d9ac53;--bg:#f4f6f9;--edge:#d6dfe7;--blue:#155b93;--good:#0b714e;--bad:#b33843}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1c3040;font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif}header{background:linear-gradient(115deg,#64132e,#263e57);color:white;padding:24px max(22px,calc((100vw - 1100px)/2))}header .university{letter-spacing:.13em;color:#f4d48f;font-weight:750;font-size:13px}header h1{margin:4px 0;font-size:clamp(24px,3vw,33px)}header p{margin:0;color:#f0e6e8;font-size:14px}main{max-width:1100px;margin:22px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}section,aside{background:white;border:1px solid var(--edge);border-radius:14px;padding:23px;box-shadow:0 2px 7px #2134490e}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}select,button,input{font:inherit}select{min-width:180px;flex:1;padding:10px;border:1px solid #b6c7d3;border-radius:9px;background:#fff}button{border:0;border-radius:9px;padding:11px 14px;background:var(--blue);color:white;font-weight:650;cursor:pointer}button.secondary{background:#e8f0f7;color:#173d5f}button:hover{filter:brightness(.94)}button:disabled{opacity:.55;cursor:default}button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #7aaee1;outline-offset:2px}.pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.07em;background:#f9e8bf;color:#6c1631;border-radius:99px;padding:4px 11px}.prompt{font-size:21px;font-weight:700;line-height:1.4;margin:15px 0}.muted{color:#53697a}.instructions{margin:0 0 16px}.micro{font-size:13px}.editorlabel{font-weight:700;display:block;margin-bottom:8px}textarea{font:16px/1.55 Consolas,Monaco,monospace;width:100%;min-height:192px;padding:13px;border:2px solid #bdcedc;border-radius:9px;background:#f8fbfd;color:#162b3e;resize:vertical;tab-size:4}.buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.feedback{margin-top:18px;padding:16px;border-radius:10px;border-left:5px solid #7c99a8;background:#edf2f6}.feedback.bad{background:#fff0f1;border-color:var(--bad)}.feedback.good{background:#e9f7ef;border-color:var(--good)}.feedback h3{margin:0 0 7px}.feedback pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#162d43;color:#fff;border-radius:8px;padding:12px;font:15px/1.5 Consolas,monospace}.hidden{display:none}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{padding:12px;background:#f0f5f8;text-align:center;border-radius:10px}.stat b{display:block;font-size:25px;color:#173d59}.stat span{font-size:12px;color:#566b7e}.progress{height:11px;background:#e5edf2;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:#208765;width:0}aside label{display:block;font-weight:650;margin-bottom:6px}aside input{width:100%;border:1px solid #b6c7d3;padding:10px;border-radius:8px}aside button{width:100%;margin-top:9px}aside h3{margin:0 0 12px}.tip{border-top:1px solid var(--edge);margin-top:20px;padding-top:15px}.tip code{background:#edf3f7;padding:2px 4px;word-break:break-word}.footer{max-width:1100px;margin:0 auto 30px;padding:0 20px;color:#617283;font-size:13px}@media(max-width:780px){main{grid-template-columns:1fr}aside{order:2}section,aside{padding:16px}}
+
+/* v4 learning studio */
+.course-tabs{max-width:1100px;margin:18px auto 0;padding:0 18px;display:flex;gap:9px;flex-wrap:wrap}
+.course-tab{border:1px solid #d0dce5;background:white;color:#163b56;padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:800}
+.course-tab.active{background:#64132e;color:white;border-color:#64132e}
+.learn-shell{max-width:1100px;margin:20px auto;padding:0 18px}
+.learn-page{display:none}.learn-page.active{display:block}
+#practiceShell.hide{display:none}
+.learn-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:16px}
+.lesson-card{background:white;border:1px solid #d6dfe7;border-radius:14px;padding:23px;margin-bottom:16px;box-shadow:0 2px 7px #2134490e}
+.lesson-card h2{color:#6c1631;margin-top:0}.lesson-card h3{color:#173d59}
+.lesson-card pre{background:#142d43;color:#f2f7fa;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;font:14px/1.55 Consolas,monospace}
+.lesson-card ul{padding-left:22px}.lesson-card li{margin:6px 0}
+.lesson-video{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#132f43}
+.learn-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lesson-chip{display:inline-block;background:#f9e8bf;color:#6c1631;padding:5px 10px;border-radius:50px;font-size:12px;font-weight:800}
+.lesson-note{border-left:4px solid #d9ac53;background:#fff9eb;padding:12px 15px;border-radius:6px;margin:12px 0}
+.compiler-frame{width:100%;height:680px;border:1px solid #cbd9e3;border-radius:12px;background:#fff}
+.task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.task-box{background:#f4f7f9;border:1px solid #d9e3e9;border-radius:11px;padding:14px}
+.task-box button{margin-top:9px}
+@media(max-width:800px){.learn-grid,.task-grid{grid-template-columns:1fr}.compiler-frame{height:590px}}
+.function-question{border-top:1px solid var(--edge);padding:12px 0}.quiz-choices{display:flex;flex-wrap:wrap;gap:7px}.quiz-choices button{font-size:13px;text-align:left}.lesson-card ol{padding-left:24px}.lesson-card ol li{margin:7px 0} </style></head><body>
+<header><div class="university">PHILANDER SMITH UNIVERSITY</div><h1>Dr. Suzan Anwar — Programming I</h1><p>C++ Structure &amp; Problem-Solving Lab · Version 4.1 · Input/output, calculations, selections, and loops · Type-only practice</p></header>
+<nav class="course-tabs" aria-label="Course pages">
+<button class="course-tab active" data-page="practice">✍ Practice Studio</button>
+<button class="course-tab" data-page="selection">Chapter 4 · if / switch</button>
+<button class="course-tab" data-page="loops">Chapter 5 · Loops</button>
+<button class="course-tab" data-page="functions">Chapter 6 · Functions (Step-by-step)</button>
+<button class="course-tab" data-page="compiler">▶ Run C++ Compiler</button>
+</nav><div id="practiceShell"><main><section><div class="toolbar"><select id="topic" aria-label="Choose practice topic"><option value="all">Mixed practice — all topics</option><option value="cout">cout / output formatting</option><option value="cin">cin / user input</option><option value="io">Combined cin and cout</option><option value="math">Arithmetic and expressions</option><option value="if">if statements</option><option value="ifelse">if / else</option><option value="multiway">Multiway if / else if / else</option><option value="nested">Nested if statements</option><option value="ternary">Conditional operator (?:)</option><option value="switch">switch statements</option><option value="while">while loops</option><option value="for">for loops</option><option value="dowhile">do-while loops</option><option value="functions">Functions, prototypes, parameters</option><option value="debug">Debug a C++ mistake</option><option value="trace">Predict program output</option><option value="projects">Real-world program challenges</option></select><button id="newQ" class="secondary">New question</button></div><span class="pill" id="pill">COUT</span><span id="difficulty" class="muted micro" style="margin-left:9px">Structured practice</span><div id="prompt" class="prompt"></div><p id="instructions" class="muted instructions"></p><label class="editorlabel" for="editor">Type your C++ code (paste disabled):</label><textarea id="editor" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Type your answer here..."></textarea><div class="buttons"><button id="check">Check my code</button><button id="next" class="secondary hidden">Next similar question →</button><button id="hint" class="secondary">Show hint</button></div><div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div></section>
+<aside><h3>Student practice progress</h3><label for="student">Student name (optional)</label><input id="student" placeholder="Your name" maxlength="90"><div class="stats" style="margin-top:15px"><div class="stat"><b id="attempts">0</b><span>Submissions</span></div><div class="stat"><b id="first">0</b><span>Correct first try</span></div><div class="stat"><b id="mastered">0</b><span>Problems mastered</span></div><div class="stat"><b id="streak">0</b><span>Current streak</span></div></div><p class="micro muted" style="margin-bottom:4px">First-try success rate</p><div class="progress"><div id="bar"></div></div><button id="download" class="secondary">Download progress report (.txt)</button><button id="reset" class="secondary">Reset my progress</button><div class="tip"><b>C++ reminders</b><p><code>cout &lt;&lt; "Hello" &lt;&lt; endl;</code></p><p><code>cin &gt;&gt; number;</code></p><p><code>cin &gt;&gt; a &gt;&gt; b;</code></p><p><code>getline(cin, fullName);</code></p><p><code>cout &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; price;</code></p><p><code>cout &lt;&lt; "Total: " &lt;&lt; total;</code></p><p><code>if (x &gt; 6) { ... }</code></p><p><code>for (int j=0; j&lt;5; j++) { ... }</code></p><p><code>while (n&lt;5) { n++; }</code></p><p><code>do { ... } while (x != 0);</code></p><small>This course assumes <code>using namespace std;</code>. In input-loop questions, an optional <code>cout</code> prompt before <code>cin</code> is accepted. Write <code>cout</code>, <code>cin</code>, <code>endl</code>, and <code>getline</code> directly—no <code>std::</code> prefix is required. The checker includes common input/output styles (including getline, boolalpha, fixed, setw, and setprecision) and accepts several equivalent forms such as <code>j++</code>, <code>++j</code>, <code>j += 1</code>, and <code>j = j + 1</code>.</small></div></aside></main></div>
+
+<div class="learn-shell">
+<section id="lesson-selection" class="learn-page">
+<div class="learn-grid"><article>
+<div class="lesson-card"><span class="lesson-chip">Chapter 4 — Control Structures I</span><h2>Make decisions with if, else if, and switch</h2><p>Selections allow programs to choose an action. A relational expression evaluates to true or false. This lesson follows the Chapter 4 sequence: comparisons, logical expressions, one-way/two-way selection, multiway selection, and switch.</p>
+<h3>1. Relational and logical operators</h3><p><code>==</code> equals, <code>!=</code> not equal, <code>&lt;</code> / <code>&gt;</code> less/greater, <code>&lt;=</code> / <code>&gt;=</code> inclusive. Use <code>&amp;&amp;</code> for AND, <code>||</code> for OR, and <code>!</code> for NOT.</p>
+<pre>int score;
+cin &gt;&gt; score;
+if (score &gt;= 70 &amp;&amp; score &lt;= 100) {
+    cout &lt;&lt; "Passed";
+} else {
+    cout &lt;&lt; "Not passed";
+}</pre><div class="lesson-note"><b>Common mistake:</b> <code>if (score = 70)</code> assigns 70 instead of comparing. Use <code>==</code> to test equality. A semicolon immediately after the <code>if (...)</code> header also changes the logic.</div>
+<h3>2. Multiway decisions</h3><pre>if (temperature &gt;= 90) {
+    cout &lt;&lt; "Hot";
+} else if (temperature &gt;= 70) {
+    cout &lt;&lt; "Warm";
+} else {
+    cout &lt;&lt; "Cool";
+}</pre>
+<h3>3. switch for menu choices</h3><pre>switch (choice) {
+    case 1: cout &lt;&lt; "Deposit"; break;
+    case 2: cout &lt;&lt; "Withdraw"; break;
+    default: cout &lt;&lt; "Unknown choice";
+}</pre><p>Use <code>break</code> to prevent unintended fall-through. A <code>switch</code> label uses <code>case 1:</code> (a colon, not a semicolon). For ranges such as <code>score &gt;= 70</code>, an <code>if/else if</code> chain is usually clearer.</p>
+<div class="learn-actions"><button data-topic-go="ifelse">Practice if/else</button><button data-topic-go="multiway">Practice multiway</button><button data-topic-go="switch">Practice switch</button></div></div></article>
+<aside><div class="lesson-card"><h3>Watch: if, else, switch</h3><iframe class="lesson-video" loading="lazy" src="https://www.youtube-nocookie.com/embed/-6ZkRmhL3QY" title="C++ If Else Switch lesson" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=-6ZkRmhL3QY" target="_blank" rel="noopener">Open video on YouTube ↗</a></p><p class="muted micro">Third-party video requires internet access; availability and captions depend on YouTube.</p></div></aside></div></section>
+<section id="lesson-loops" class="learn-page"><div class="learn-grid"><article><div class="lesson-card"><span class="lesson-chip">Chapter 5 — Control Structures II</span><h2>Loops: while, for, and do-while</h2><p>The slides cover counter-controlled, sentinel-controlled, flag-controlled, and end-of-file loops; plus <code>break</code>, <code>continue</code>, and nested loops. Always identify the starting value, condition, body, and update.</p>
+<h3>1. Counter-controlled while loop</h3><pre>int day = 1;
+int total = 0;
+while (day &lt;= 7) {
+    int calories;
+    cin &gt;&gt; calories;
+    total += calories;
+    day++;
+}
+cout &lt;&lt; total / 7.0;</pre><p>This reads seven daily values and calculates the average. <code>day++</code>, <code>++day</code>, <code>day += 1</code> and <code>day = day + 1</code> all increment the counter by one in this context.</p>
+<h3>2. Sentinel-controlled loop</h3><pre>int value, total = 0;
+cin &gt;&gt; value;
+while (value != -1) {
+    total += value;
+    cin &gt;&gt; value;
+}
+cout &lt;&lt; total;</pre><p>Reading the next value <b>inside</b> the loop prevents an infinite loop. The sentinel <code>-1</code> ends input and is not added.</p>
+<h3>3. for loop: running product</h3><pre>int product = 1;
+for (int i = 1; i &lt;= n; i++) {
+    product *= i;
+}</pre>
+<h3>4. do-while: validate user input</h3><pre>int age;
+do {
+    cout &lt;&lt; "Enter age 1–120: ";
+    cin &gt;&gt; age;
+} while (age &lt; 1 || age &gt; 120);</pre>
+<div class="lesson-note">A <code>while</code> loop may run zero times. A <code>do-while</code> loop runs its body at least once and ends with <code>while(condition);</code>. Use a condition that can eventually become false.</div>
+<div class="learn-actions"><button data-topic-go="while">Practice while</button><button data-topic-go="for">Practice for</button><button data-topic-go="dowhile">Practice do-while</button></div></div></article>
+<aside><div class="lesson-card"><h3>Watch: C++ loops</h3><iframe class="lesson-video" loading="lazy" src="https://www.youtube-nocookie.com/embed/iMbvbWlrMj8" title="C++ while for do while loops lesson" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=iMbvbWlrMj8" target="_blank" rel="noopener">Open video on YouTube ↗</a></p><p class="muted micro">Watch how initialization, testing, and updates change the output.</p></div></aside></div></section>
+<section id="lesson-functions" class="learn-page"><div class="learn-grid"><article>
+<div class="lesson-card"><span class="lesson-chip">Chapter 6 — User-Defined Functions · Expanded</span><h2>Learn C++ functions one step at a time</h2><p>Work through this chapter in order. Each step explains one idea, shows a complete example, and connects to a related practice problem. The lesson builds on the Chapter 6 slides: function calls, prototypes, formal and actual parameters, value-returning and void functions, scope, reference parameters, default arguments, and function overloading.</p>
+<div class="lesson-note"><b>Before you begin:</b> We use <code>#include &lt;iostream&gt;</code> and <code>using namespace std;</code>. A <b>function definition</b> has a body in braces. A <b>function prototype</b> ends in a semicolon. A <b>function call</b> uses the function name and arguments.</div>
+<h3>Step 1 · Why use a function?</h3><p>Suppose you need to calculate sales tax for 20 purchases. Instead of rewriting the formula 20 times, write it once as a function and call it whenever needed.</p><pre>double salesTax(double price) {
+    return price * 0.08;
+}
+
+// Elsewhere in your program:
+cout &lt;&lt; salesTax(50);  // 4</pre><p>A function is a reusable, named block of code. It can receive data, perform work, and optionally return a result.</p>
+<h3>Step 2 · Learn the five parts of a function</h3><pre>double rectangleArea(double width, double height) {
+    double area = width * height;
+    return area;
+}</pre><ol><li><b>Return type:</b> <code>double</code> indicates the result type.</li><li><b>Function name:</b> <code>rectangleArea</code>.</li><li><b>Formal parameters:</b> <code>double width, double height</code>.</li><li><b>Body:</b> statements inside <code>{ }</code>.</li><li><b>Return statement:</b> sends the result to the caller.</li></ol>
+<h3>Step 3 · Prototype → call → definition</h3><p>When the function is defined after <code>main()</code>, declare its prototype first so the compiler knows its name, return type, and parameter types.</p><pre>#include &lt;iostream&gt;
+using namespace std;
+
+int square(int n);         // 1. prototype
+
+int main() {
+    int result = square(6); // 2. call
+    cout &lt;&lt; result;       // prints 36
+    return 0;
+}
+
+int square(int n) {        // 3. definition
+    return n * n;
+}</pre><div class="lesson-note"><b>Do not confuse:</b> <code>int square(int n);</code> is a prototype. <code>square(6)</code> is a call. <code>int square(int n) { return n*n; }</code> is a definition.</div>
+<h3>Step 4 · Formal parameters vs. actual arguments</h3><pre>int add(int a, int b) {  // a and b: formal parameters
+    return a + b;
+}
+int total = add(7, 9);  // 7 and 9: actual arguments</pre><p>When <code>add(7, 9)</code> is called, its parameters receive 7 and 9. The function returns 16, which is stored in <code>total</code>. Parameter order matters.</p>
+<h3>Step 5 · Value-returning vs. void</h3><pre>double discount(double price) {
+    return price * 0.10;
+}
+
+void printReceipt(double total) {
+    cout &lt;&lt; "Total: " &lt;&lt; total &lt;&lt; endl;
+}</pre><p>Use a return type such as <code>int</code>, <code>double</code>, or <code>bool</code> if the caller needs a value. Use <code>void</code> if the function performs an action but does not produce a value to be assigned.</p>
+<h3>Step 6 · Pass by value and pass by reference</h3><pre>void addTenByValue(int points) {
+    points += 10; // changes only local copy
+}
+void addTenByReference(int&amp; points) {
+    points += 10; // changes original
+}
+
+int score = 50;
+addTenByValue(score);      // score is still 50
+addTenByReference(score);  // score is now 60</pre><p>With pass-by-value, changes remain inside the function. Adding <code>&amp;</code> to the formal parameter makes it a reference to the caller's variable.</p>
+<h3>Step 7 · Local scope, global variables, and static variables</h3><pre>int visits = 0; // global variable
+
+void registerVisit() {
+    int dailyCount = 1;   // local: new every call
+    static int total = 0; // persists across calls
+    total++;
+    visits++;
+    cout &lt;&lt; total &lt;&lt; endl;
+}</pre><p><code>dailyCount</code> exists only inside the function; <code>total</code> keeps its value across calls. Prefer passing parameters and returning values instead of relying on mutable global variables.</p>
+<h3>Step 8 · Default parameters</h3><pre>double shipping(double weight, double rate = 2.0) {
+    return weight * rate;
+}
+
+shipping(5);       // uses default rate: 10
+shipping(5, 3.0);  // overrides rate: 15</pre><p>Defaulted parameters are ordinarily placed after required parameters. When using a separate prototype, put the default in the declaration, not in both declaration and definition.</p>
+<h3>Step 9 · Function overloading</h3><pre>int larger(int a, int b) {
+    return a &gt; b ? a : b;
+}
+double larger(double a, double b) {
+    return a &gt; b ? a : b;
+}</pre><p>Functions can share a name if their parameter lists differ. <b>Changing only the return type is not enough</b> to overload a function.</p>
+<h3>Step 10 · Functions with selection and loops</h3><pre>int countEven(int limit) {
+    int count = 0;
+    for (int i = 1; i &lt;= limit; i++) {
+        if (i % 2 == 0) {
+            count++;
+        }
+    }
+    return count;
+}</pre><p>Trace this example: <code>countEven(7)</code> returns 3, because 2, 4 and 6 are even. This is how functions help organize larger problems.</p>
+<div class="lesson-note"><b>Common errors to check:</b> missing return type, prototype without <code>;</code>, function header with extra <code>;</code>, returning a value from <code>void</code>, forgetting <code>&amp;</code> for a reference, mismatched parameter types, using a local variable outside its scope, or forgetting to call the function.</div>
+<div class="learn-actions"><button data-topic-go="functions">Practice functions now</button><button data-topic-go="debug">Debug function mistakes</button><button data-topic-go="trace">Trace function output</button><button data-topic-go="projects">Write a complete program</button></div>
+</div>
+<div class="lesson-card"><h2>Self-check: Do you understand functions?</h2><p>Choose an answer to get immediate feedback and a short explanation. These checks are separate from your graded practice counters.</p><div id="functionQuiz"></div></div>
+<div class="lesson-card"><h2>Suggested learning path</h2><ol><li>Write a prototype, then a simple returning function.</li><li>Call your function from <code>main()</code> and explain the output.</li><li>Write a <code>void</code> function.</li><li>Compare pass-by-value with pass-by-reference.</li><li>Debug incorrect function headers and missing returns.</li><li>Solve realistic problems: overtime pay, ticket costs, grade averages, unit conversion, discount calculations, and loop helpers.</li></ol><p>After practice, open the compiler tab and test the <b>entire C++ program</b>, including <code>main()</code>. The guided checker recognizes selected patterns but is not a C++ compiler.</p></div>
+</article><aside><div class="lesson-card"><h3>Watch: C++ functions</h3><iframe class="lesson-video" loading="lazy" src="https://www.youtube-nocookie.com/embed/K6qgajOzybc" title="C++ functions lesson" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=K6qgajOzybc" target="_blank" rel="noopener">Open the lesson on YouTube</a></p><p class="micro muted">Video requires internet access and may be unavailable in some school networks.</p></div><div class="lesson-card"><h3>Function syntax cheat sheet</h3><pre>type name(type param) {
+    // statements
+    return result;
+}
+
+void name(type&amp; param) {
+    // action
+}
+
+// Prototype:
+int add(int a, int b);
+
+// Call:
+int result = add(3, 4);</pre><p class="micro muted">The site assumes <code>using namespace std;</code> for standard input/output.</p></div></aside></div></section>
+<section id="lesson-compiler" class="learn-page"><div class="lesson-card"><span class="lesson-chip">Compiler workspace</span><h2>Write, compile, and run complete C++ programs</h2><p>This embedded <a href="https://onecompiler.org/embed/cpp" target="_blank" rel="noopener">OneCompiler C++ editor</a> lets students run code and examine compiler errors and output. It is a third-party service and <b>requires an internet connection</b>. This workspace permits pasting; the separate Practice Studio remains type-only. Code entered here is processed by OneCompiler, not Philander Smith University.</p><p>Start with a challenge below, write a complete program with <code>#include &lt;iostream&gt;</code>, <code>using namespace std;</code> and <code>int main()</code>, and click Run inside the compiler. If this embed is blocked by school network settings, <a href="https://onecompiler.org/cpp" target="_blank" rel="noopener">open OneCompiler in a new tab</a>.</p><div class="task-grid">
+<div class="task-box"><b>Parking garage fees</b><p>Read hours parked. First 2 hours cost $5; each additional hour costs $2. Show the final fee and reject negative hours.</p><button class="secondary" data-topic-go="projects">Practice logic</button></div>
+<div class="task-box"><b>Water-use billing</b><p>Read gallons used. Charge $0.04 for the first 100 units and $0.06 for each extra unit. Use selection and print the bill.</p><button class="secondary" data-topic-go="ifelse">Practice selection</button></div>
+<div class="task-box"><b>Student gradebook</b><p>Read grades until -1. Count valid grades, calculate the average, and show letter grade. Handle zero entries.</p><button class="secondary" data-topic-go="while">Practice loops</button></div>
+<div class="task-box"><b>Functions challenge</b><p>Create <code>double shippingCost(double weight, bool express)</code>, and test several inputs from main.</p><button class="secondary" data-topic-go="functions">Practice functions</button></div>
+</div><div class="lesson-note">The Practice Studio provides guided syntax feedback. <b>Only the embedded compiler</b> actually compiles/executes general C++ code. The two editors do not automatically synchronize or grade compiler output.</div>
+<iframe class="compiler-frame" title="Embedded C++ online compiler provided by OneCompiler" loading="lazy" src="https://onecompiler.org/embed/cpp?hideLanguageSelection=true&amp;hideNew=true" allow="clipboard-read; clipboard-write"></iframe></div></section>
+</div>
+<div class="footer">Guided Practice Studio is a syntax-pattern checker, not a full compiler. The separate Compiler workspace uses OneCompiler online to compile and run C++. It checks requested patterns and selected equivalent C++ forms; alternative valid programs may still be rejected. For full compilation and runtime testing, use a C++ compiler. Copy/paste is blocked in the editor to encourage active practice, but this is not a secure exam. Progress is stored only in this browser and can be downloaded.</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), pick=a=>a[Math.floor(Math.random()*a.length)], num=(lo,hi)=>lo+Math.floor(Math.random()*(hi-lo+1));
+const labels={cout:'COUT',cin:'CIN',io:'INPUT / OUTPUT',math:'ARITHMETIC',if:'IF',ifelse:'IF / ELSE',multiway:'MULTIWAY IF',nested:'NESTED IF',ternary:'CONDITIONAL (?:)',switch:'SWITCH',while:'WHILE',for:'FOR',dowhile:'DO-WHILE'};
+const topics=Object.keys(labels), variations=["\"\\n\"","'\\n'"];
+function problem(topic,prompt,instructions,answer,hint,alternatives=[]){return {topic,prompt,instructions,answer,hint,alternatives};}
+function generate(t){
+const v=pick(['n','x','score','age','points','count','temperature']), k=pick([3,5,6,10,12,18,20,25,50,60,75,100]),other=pick(['a','b','height','width','price','quantity']), msg=pick(['Yes','Valid','Passed','Ready']);
+switch(t){
+case 'cout':{
+ const kind=num(0,12), name=pick(['name','total','score','age','price']);
+ if(kind===0)return problem(t,`Display the exact message "${msg}" using cout.`, 'Write one output statement. Do not add a newline.',`cout << "${msg}";`,'Use cout << "text";');
+ if(kind===1)return problem(t,`Display the value of variable ${name} using cout.`, 'Print the VARIABLE (not its name in quotation marks).',`cout << ${name};`,'Use cout << variable;');
+ if(kind===2)return problem(t,`Display the label "${name}: " followed by the value of ${name}.`, 'Use one cout statement and the insertion operator <<.',`cout << "${name}: " << ${name};`,'Chain the two output parts with <<.');
+ if(kind===3)return problem(t,`Display "${msg}" and then move to a new line.`, 'Use endl or a newline escape sequence.',`cout << "${msg}" << endl;`,'Use cout << "text" << endl;', [`cout << "${msg}\\n";`,`cout << "${msg}" << "\\n";`,`cout << "${msg}" << '\\n';`]);
+ if(kind===4)return problem(t,`Display the sum of variables ${v} and ${other} directly using cout.`, 'Use parentheses around the addition expression.',`cout << (${v} + ${other});`,'The sum should be evaluated before output.');
+ if(kind===5)return problem(t,`Display ${v} multiplied by ${k}, followed by a newline.`, 'Use cout with a multiplication expression and endl (or \\n).',`cout << ${v} * ${k} << endl;`,'Multiplication uses * in C++.',[`cout << (${v} * ${k}) << endl;`,`cout << ${v} * ${k} << '\\n';`,`cout << (${v} * ${k}) << '\\n';`,`cout << ${v} * ${k} << "\\n";`]);
+ if(kind===6)return problem(t,`Print "Enter ${v}: " as a prompt on the same line (do not read input yet).`,'The prompt needs quotation marks.',`cout << "Enter ${v}: ";`,'Use one cout statement with the exact prompt.');
+ if(kind===8)return problem(t,`Display "${msg}" followed by a tab and then the value of ${name}.`, 'Use the \t tab escape sequence.',`cout << "${msg}\\t" << ${name};`,'Put \t inside the string literal.');
+ if(kind===9)return problem(t,`Display ${name} as a fixed-point number with exactly 2 digits after the decimal point.`, 'Assume <iomanip> is included and name is a floating-point variable.',`cout << fixed << setprecision(2) << ${name};`,'Use fixed and setprecision(2) manipulators.');
+ if(kind===10)return problem(t,`Display the value of ${name} in a field of width 8.`, 'Assume <iomanip> is included.',`cout << setw(8) << ${name};`,'Use the setw(8) manipulator.');
+ if(kind===11)return problem(t,`Display Boolean variable isReady as true or false words (not 1 or 0).`, 'Use the boolalpha manipulator.',`cout << boolalpha << isReady;`,'Use cout << boolalpha << isReady;');
+ if(kind===12)return problem(t,`Display the text "${msg}" and then ${name} on a NEW LINE, using two cout statements.`, 'Write two statements, the first ending with a newline.',`cout << "${msg}" << endl;\ncout << ${name};`,'Use endl (or a newline) in the first statement.',[`cout << "${msg}" << '\\n';\ncout << ${name};`]);
+ return problem(t,`Display "${msg}" on one line and "Done" on the next line.`, 'Use endl (or \\n) between the two messages.',`cout << "${msg}" << endl << "Done";`,'You can chain multiple << operations.',[`cout << "${msg}\\nDone";`,`cout << "${msg}" << '\\n' << "Done";`,`cout << "${msg}" << "\\n" << "Done";`]);
+}
+case 'cin':{
+ const kind=num(0,10), a=pick(['age','score','count','quantity','price','number']),b=pick(['total','width','height','hours']);
+ if(kind===0)return problem(t,`Read one value from the keyboard and store it in variable ${a}.`,'Assume the variable has already been declared.',`cin >> ${a};`,'Use cin >> variable;');
+ if(kind===1)return problem(t,`Read ${a} and then ${b} from the keyboard using ONE cin statement.`,'Assume both variables have been declared.',`cin >> ${a} >> ${b};`,'Chain the >> extraction operators.');
+ if(kind===2)return problem(t,`Declare an integer variable ${a}, then read its value with cin.`, 'Write a declaration and an input statement.',`int ${a};\ncin >> ${a};`,'Declare with int before reading the variable.');
+ if(kind===3)return problem(t,`Declare a double variable ${a}, then read its value with cin.`,'Use double, not int.',`double ${a};\ncin >> ${a};`,'Use double variableName; and cin >> variableName;');
+ if(kind===4)return problem(t,`Read three variables ${a}, ${b}, and ${v} in a single cin statement.`,'The variables are already declared.',`cin >> ${a} >> ${b} >> ${v};`,'cin >> first >> second >> third;');
+ if(kind===6)return problem(t,`Read a single character into char variable letter.`, 'Assume letter is already declared.',`cin >> letter;`,'cin >> letter; reads a non-whitespace character.');
+ if(kind===7)return problem(t,`Read a full line, including spaces, into string variable fullName.`, 'Assume fullName is already declared; use getline.',`getline(cin, fullName);`,'Use getline(cin, variable), not cin >> variable.');
+ if(kind===8)return problem(t,`Declare string variable city and read a full line of text into it.`, 'Assume <string> is included.',`string city;\ngetline(cin, city);`,'Declare string city; then call getline(cin, city);');
+ if(kind===9)return problem(t,`Discard the next single character from the input stream using cin.ignore().`, 'Use the ignore member function.',`cin.ignore();`,'Type cin.ignore();');
+ if(kind===10)return problem(t,`Read a Boolean value written as true or false into ready.`, 'Use boolalpha with cin.',`cin >> boolalpha >> ready;`,'cin can use boolalpha to parse true or false.');
+ return problem(t,`Prompt the user with "Enter ${a}: " and read the answer into ${a}.`, 'Assume the variable already exists; write cout then cin.',`cout << "Enter ${a}: ";\ncin >> ${a};`,'Use << for cout and >> for cin.');
+}
+case 'io':{
+ const kind=num(0,7), a=pick(['age','score','count','price','number']),b=pick(['height','width','quantity']);
+ if(kind===0)return problem(t,`Ask the user to enter ${a}, read it, then print "You entered: " followed by ${a}.`, 'The variable is already declared. Use cout, cin, then cout.',`cout << "Enter ${a}: ";\ncin >> ${a};\ncout << "You entered: " << ${a};`,'Follow the three stages: prompt → read → display.');
+ if(kind===1)return problem(t,`Read ${a} and ${b}, then print their sum with the label "Sum: ".`,'Assume both are declared. Use ONE cin statement.',`cin >> ${a} >> ${b};\ncout << "Sum: " << (${a} + ${b});`,'Use cin >> a >> b, and cout << "Sum: " << (a+b).', [`cin >> ${a} >> ${b};\ncout << "Sum: " << (${b} + ${a});`]);
+ if(kind===2)return problem(t,`Read an integer ${a}, then print its square with the label "Square: ".`,'Declare int, read it, and multiply it by itself.',`int ${a};\ncin >> ${a};\ncout << "Square: " << (${a} * ${a});`,'Use integer declaration, cin, and multiplication.');
+ if(kind===3)return problem(t,`Read ${a} and then print "Double: " followed by two times ${a}.`, 'Assume the variable already exists.',`cin >> ${a};\ncout << "Double: " << (${a} * 2);`,'Read with >>, print with <<.');
+ if(kind===4)return problem(t,`Print "Enter ${a}: ", read ${a}, then print "Next: " followed by ${a} + 1.`,'Assume an integer variable already exists.',`cout << "Enter ${a}: ";\ncin >> ${a};\ncout << "Next: " << (${a} + 1);`,'A complete input/output sequence uses cout, cin, cout.');
+ if(kind===6)return problem(t,`Prompt "Full name: " and then read a full line of text (spaces included) into fullName.`, 'Assume string fullName already exists.',`cout << "Full name: ";\ngetline(cin, fullName);`,'Use getline(cin, fullName); for a whole line.');
+ if(kind===7)return problem(t,`Read integer age, discard the remaining newline with cin.ignore(), and then read a full line into fullName.`, 'Assume age and fullName are already declared.',`cin >> age;\ncin.ignore();\ngetline(cin, fullName);`,'Remember cin.ignore() before getline in this particular sequence.');
+ return problem(t,`Read ${a} and ${b}, then display their product with the label "Product: ".`, 'Assume both variables are declared.',`cin >> ${a} >> ${b};\ncout << "Product: " << (${a} * ${b});`,'Use * for multiplication.',[`cin >> ${a} >> ${b};\ncout << "Product: " << (${b} * ${a});`]);
+}
+case 'math':{
+ const kind=num(0,6), a=pick(['sum','total','area','result']),x=pick(['n','x','length','width','price']),y=pick(['m','y','height','quantity']);
+ if(kind===0)return problem(t,`Assign ${a} the sum of ${x} and ${y}.`,'Write an assignment statement only.',`${a} = ${x} + ${y};`,'Use = for assignment and + for addition.',[`${a} = ${y} + ${x};`]);
+ if(kind===1)return problem(t,`Assign ${a} the product of ${x} and ${y}.`,'Write one arithmetic assignment.',`${a} = ${x} * ${y};`,'Multiplication is *.',[`${a} = ${y} * ${x};`]);
+ if(kind===2)return problem(t,`Increase variable ${x} by ${k}.`,'Write one update statement.',`${x} += ${k};`,'Use += or x = x + amount.',[`${x} = ${x} + ${k};`,`${x} = ${k} + ${x};`]);
+ if(kind===3)return problem(t,`Assign ${a} the average of ${x} and ${y} using floating-point division.`,'Divide the sum by 2.0.',`${a} = (${x} + ${y}) / 2.0;`,'Parenthesize the addition so it is evaluated first.',[`${a} = (${y} + ${x}) / 2.0;`]);
+ if(kind===4)return problem(t,`Assign ${a} the remainder when integer ${x} is divided by ${k}.`,'Use the % remainder operator.',`${a} = ${x} % ${k};`,'In C++, remainder uses %.');
+ if(kind===5)return problem(t,`Assign ${a} the value ${x} squared plus ${k}.`,'Multiply x by itself; do not use ^ for powers.',`${a} = ${x} * ${x} + ${k};`,'Use x * x, not x ^ 2.',[`${a} = (${x} * ${x}) + ${k};`]);
+ return problem(t,`Subtract ${k} from variable ${x} and store the result back in ${x}.`,'Use one statement.',`${x} -= ${k};`,'Use -= or x = x - amount.',[`${x} = ${x} - ${k};`]);
+}
+case 'if':{
+ const kind=num(0,5),m=pick(['Positive','Approved','Even','Passed']);
+ if(kind===0)return problem(t,`If ${v} is greater than ${k}, add ${k} to variable total.`,'Use an if block with braces and an arithmetic update.',`if (${v} > ${k}) {\n    total += ${k};\n}`,'Put the update statement INSIDE the if braces.',[`if (${v} > ${k}) {\n    total = total + ${k};\n}`,`if (${v} > ${k}) {\n    total = ${k} + total;\n}`]);
+ if(kind===1)return problem(t,`If ${v} is at least ${k}, display "${m}" followed by a newline.`,'Use if, cout, and endl (or \\n).',`if (${v} >= ${k}) {\n    cout << "${m}" << endl;\n}`,'Use >= and put cout inside braces.',[`if (${v} >= ${k}) { cout << "${m}\\n"; }`,`if (${v} >= ${k}) { cout << "${m}" << '\\n'; }`]);
+ if(kind===2)return problem(t,`If ${v} is divisible by 2, increase evenCount by 1.`,'Use modulo to test evenness.',`if (${v} % 2 == 0) {\n    evenCount++;\n}`,'Evenness condition: variable % 2 == 0.');
+ if(kind===3)return problem(t,`If ${v} is less than ${k}, set discount equal to 0.10.`,'Write one if block and an assignment.',`if (${v} < ${k}) {\n    discount = 0.10;\n}`,'Use < and remember the assignment semicolon.');
+ if(kind===4)return problem(t,`If ${v} equals ${k}, set result to ${k} * 2.`,'Use == for equality and * for multiplication.',`if (${v} == ${k}) {\n    result = ${k} * 2;\n}`,'Equality uses ==, not =.');
+ return problem(t,`If ${v} is NOT equal to ${k}, display the value of ${v}.`,'Print the variable (not a string).',`if (${v} != ${k}) {\n    cout << ${v};\n}`,'Use != and cout << variable;');
+}
+case 'ifelse':{
+ const kind=num(0,5);
+ if(kind===0)return problem(t,`If ${v} is at least ${k}, set bonus to 20; otherwise set bonus to 0.`,'Use braces for both branches.',`if (${v} >= ${k}) {\n    bonus = 20;\n} else {\n    bonus = 0;\n}`,'Use if (...) { ... } else { ... }.');
+ if(kind===1)return problem(t,`If ${v} is even, set result to ${v} / 2; otherwise set result to 3 * ${v} + 1.`,'Use modulo and arithmetic expressions.',`if (${v} % 2 == 0) {\n    result = ${v} / 2;\n} else {\n    result = 3 * ${v} + 1;\n}`,'Test even using % 2 == 0.');
+ if(kind===2)return problem(t,`If ${v} is greater than ${k}, subtract ${k} from ${v}; otherwise increase ${v} by 1.`,'Both branches modify the same variable.',`if (${v} > ${k}) {\n    ${v} -= ${k};\n} else {\n    ${v}++;\n}`,'Use an arithmetic update in each branch.');
+ if(kind===3)return problem(t,`If ${v} >= ${k}, display "Pass"; otherwise display "Try again".`,'Use cout in both branches.',`if (${v} >= ${k}) {\n    cout << "Pass";\n} else {\n    cout << "Try again";\n}`,'Remember both cout semicolons.');
+ if(kind===4)return problem(t,`If ${v} is negative, set absoluteValue to -${v}; otherwise set absoluteValue to ${v}.`,'Implement absolute value using if / else.',`if (${v} < 0) {\n    absoluteValue = -${v};\n} else {\n    absoluteValue = ${v};\n}`,'Unary - reverses the sign.');
+ return problem(t,`If ${v} is divisible by ${k}, set result to ${v} / ${k}; otherwise set result to ${v}.`,'Use the remainder operator %.',`if (${v} % ${k} == 0) {\n    result = ${v} / ${k};\n} else {\n    result = ${v};\n}`,'Use % to check divisibility.');
+}
+case 'multiway':{
+ const h=pick([70,80,90]),l=h-20,kind=num(0,3);
+ if(kind===0)return problem(t,`Grade ${v}: if ${v} >= ${h}, set grade to 'A'; else if ${v} >= ${l}, set grade to 'B'; otherwise set grade to 'C'.`,'Use an if / else if / else chain.',`if (${v} >= ${h}) {\n    grade = 'A';\n} else if (${v} >= ${l}) {\n    grade = 'B';\n} else {\n    grade = 'C';\n}`,'Test the highest threshold first.');
+ if(kind===1)return problem(t,`Shipping cost: if ${v} >= ${h}, set shipping to 0; else if ${v} >= ${l}, set shipping to 5; otherwise set shipping to 10.`,'Use three branches.',`if (${v} >= ${h}) {\n    shipping = 0;\n} else if (${v} >= ${l}) {\n    shipping = 5;\n} else {\n    shipping = 10;\n}`,'Begin with the highest cutoff.');
+ if(kind===2)return problem(t,`If ${v} > ${k}, set status to 1; else if ${v} == ${k}, set status to 0; otherwise set status to -1.`,'Use three mutually exclusive outcomes.',`if (${v} > ${k}) {\n    status = 1;\n} else if (${v} == ${k}) {\n    status = 0;\n} else {\n    status = -1;\n}`,'Use == to compare equality.');
+ return problem(t,`If ${v} >= ${h}, display "Excellent"; else if ${v} >= ${l}, display "Good"; otherwise display "Improve".`,'Use cout in all three branches.',`if (${v} >= ${h}) {\n    cout << "Excellent";\n} else if (${v} >= ${l}) {\n    cout << "Good";\n} else {\n    cout << "Improve";\n}`,'Use if, else if, and else.');
+}
+case 'nested':{
+ const a=pick(['age','score','hours']),b=pick(['balance','level','attempts']),r=pick([5,10,18,25]);
+ if(num(0,1))return problem(t,`Use NESTED if statements: if ${a} >= ${r}, then if ${b} > 0, add 10 to reward. Do not use &&.`,'Place the second if inside the first.',`if (${a} >= ${r}) {\n    if (${b} > 0) {\n        reward += 10;\n    }\n}`,'The inner if must be inside the outer braces.');
+ return problem(t,`Use NESTED if statements: if ${a} >= ${r}, then if ${b} >= 2, print "Eligible". Do not use &&.`,'Two layers of if blocks are required.',`if (${a} >= ${r}) {\n    if (${b} >= 2) {\n        cout << "Eligible";\n    }\n}`,'Nested structure, not one combined && condition.');
+}
+case 'ternary':{
+ const kind=num(0,3);
+ if(kind===0)return problem(t,`Use the conditional (?:) operator to assign larger the bigger of ${v} and ${k}.`,'Write one assignment; do not use if.',`larger = (${v} > ${k}) ? ${v} : ${k};`,'Form: variable = condition ? ifTrue : ifFalse;');
+ if(kind===1)return problem(t,`Use ?: to assign result = 1 if ${v} is even, otherwise result = 0.`,'Use % and the conditional operator.',`result = (${v} % 2 == 0) ? 1 : 0;`,'Condition must test remainder equals zero.');
+ if(kind===2)return problem(t,`Using ?: set fee to 0 when ${v} >= ${k}, otherwise 15.`,'Use one assignment expression.',`fee = (${v} >= ${k}) ? 0 : 15;`,'Remember both ? and :.');
+ return problem(t,`Using ?: set absoluteValue to -${v} when ${v} < 0, otherwise ${v}.`,'Do not use if.',`absoluteValue = (${v} < 0) ? -${v} : ${v};`,'Use ?: and unary - for negative values.');
+}
+case 'switch':{
+ const kind=num(0,3),ch=pick(['choice','option','menu']);
+ if(kind===0)return problem(t,`Use switch (${ch}): case 1 adds 5 to total; case 2 adds 10 to total; default sets total to 0. Include break after both cases.`,'Write the entire switch block.',`switch (${ch}) {\n    case 1:\n        total += 5;\n        break;\n    case 2:\n        total += 10;\n        break;\n    default:\n        total = 0;\n}`,'Each case uses a colon; put break; after each named case.');
+ if(kind===1)return problem(t,`Use switch (${ch}): case 1 sets cost to 15; case 2 sets cost to 25; default sets cost to -1. Include break after both cases.`,'Use a switch with two cases and a default.',`switch (${ch}) {\n    case 1:\n        cost = 15;\n        break;\n    case 2:\n        cost = 25;\n        break;\n    default:\n        cost = -1;\n}`,'Use case 1: ... break;');
+ if(kind===2)return problem(t,`Use switch (${ch}): case 1 prints "Add"; case 2 prints "Exit"; default prints "Unknown". Include break after both cases.`,'Use cout in each branch.',`switch (${ch}) {\n    case 1:\n        cout << "Add";\n        break;\n    case 2:\n        cout << "Exit";\n        break;\n    default:\n        cout << "Unknown";\n}`,'Write case labels with : not ;.');
+ return problem(t,`Use switch (${ch}): case 1 multiplies result by 2; case 2 multiplies result by 3; default sets result to 1. Include break after both cases.`,'Use arithmetic updates and break.',`switch (${ch}) {\n    case 1:\n        result *= 2;\n        break;\n    case 2:\n        result *= 3;\n        break;\n    default:\n        result = 1;\n}`,'A multiplication update can use *=.');
+}
+case 'while':{
+ const kind=num(0,6),j=pick(['i','j','n','count']),limit=pick([4,5,6,8,10]),steps=pick([2,3,4]);
+ if(kind===0)return problem(t,`Write a while loop that adds ${j} to sum while ${j} <= ${limit}, and then increases ${j} by 1 each repetition. Assume ${j} is already 1.`,'Write only the while loop.',`while (${j} <= ${limit}) {\n    sum += ${j};\n    ${j}++;\n}`,'Accumulate in sum; update the loop variable.');
+ if(kind===1)return problem(t,`While ${j} < ${limit}, add ${j} * ${j} to total, then increase ${j} by 1.`,'Both the math and update belong in the loop body.',`while (${j} < ${limit}) {\n    total += ${j} * ${j};\n    ${j}++;\n}`,'Square each term with variable * variable.');
+ if(kind===2)return problem(t,`While ${j} > 0, multiply product by ${j}, then decrease ${j} by 1.`,'This is a factorial-style multiplication loop.',`while (${j} > 0) {\n    product *= ${j};\n    ${j}--;\n}`,'Use product *= j and j--.');
+ if(kind===3)return problem(t,`While ${j} <= ${limit}, print ${j} * ${steps}, then increase ${j} by 1.`,'Print a math expression, not just a variable.',`while (${j} <= ${limit}) {\n    cout << ${j} * ${steps} << endl;\n    ${j}++;\n}`,'Multiply inside cout and remember the update.');
+ if(kind===4)return problem(t,`While ${j} < ${limit}, add ${steps} to ${j} and print ${j}.`,'Update before printing.',`while (${j} < ${limit}) {\n    ${j} += ${steps};\n    cout << ${j};\n}`,'Order matters: update first, cout second.');
+ if(kind===5)return problem(t,`While number != 0, add number to sum, then read the next number using cin.`,'Sentinel-controlled input loop. Assume number was read before the loop.',`while (number != 0) {\n    sum += number;\n    cin >> number;\n}`,'The new input must happen inside the loop.');
+ return problem(t,`While balance >= ${steps}, subtract ${steps} from balance and increase purchases by 1.`,'Two arithmetic updates.',`while (balance >= ${steps}) {\n    balance -= ${steps};\n    purchases++;\n}`,'Update balance so the condition eventually changes.');
+}
+case 'for':{
+ const kind=num(0,6),j=pick(['i','j','n']),limit=pick([4,5,6,8,10]),steps=pick([2,3,4]);
+ if(kind===0)return problem(t,`Use a for loop with int ${j} starting at 1 and continuing while ${j} <= ${limit}. Add ${j} to sum each iteration.`,'Increase by one in the for header.',`for (int ${j} = 1; ${j} <= ${limit}; ${j}++) {\n    sum += ${j};\n}`,'For has initialization; condition; update.');
+ if(kind===1)return problem(t,`Use a for loop with int ${j} from 1 through ${limit}. Multiply product by ${j} in the body.`,'Factorial-style multiplication.',`for (int ${j} = 1; ${j} <= ${limit}; ${j}++) {\n    product *= ${j};\n}`,'product *= variable;');
+ if(kind===2)return problem(t,`Use a for loop with int ${j} starting at 0 while ${j} < ${limit}. Print ${j} * ${steps} with a newline each iteration.`,'Print the multiplication-table value.',`for (int ${j} = 0; ${j} < ${limit}; ${j}++) {\n    cout << ${j} * ${steps} << endl;\n}`,'Use cout << multiplication << endl;.');
+ if(kind===3)return problem(t,`Use a for loop with int ${j} starting at 0 while ${j} < ${limit}. Add ${j} * ${j} to total each iteration.`,'Square-and-sum.',`for (int ${j} = 0; ${j} < ${limit}; ${j}++) {\n    total += ${j} * ${j};\n}`,'Use sum of squares in the loop body.');
+ if(kind===4)return problem(t,`Use a for loop with int ${j} starting at ${limit} and decreasing while ${j} > 0. Add ${j} to total in each iteration.`,'Countdown uses decrement, not increment.',`for (int ${j} = ${limit}; ${j} > 0; ${j}--) {\n    total += ${j};\n}`,'Update with j-- or j -= 1.');
+ if(kind===5)return problem(t,`Use a for loop with int ${j} starting at 0, running while ${j} < ${limit}, and increasing by 2. Add ${j} to sum in the body.`,'Count by twos.',`for (int ${j} = 0; ${j} < ${limit}; ${j} += 2) {\n    sum += ${j};\n}`,'Use += 2 in the header.');
+ return problem(t,`Use a for loop with int ${j} starting at 1 while ${j} <= ${limit}. Read value with cin, then add value to total each iteration.`,'Two statements in the loop body.',`for (int ${j} = 1; ${j} <= ${limit}; ${j}++) {\n    cin >> value;\n    total += value;\n}`,'Read each value before adding it.');
+}
+case 'dowhile':{
+ const kind=num(0,5),j=pick(['n','i','count']),limit=pick([4,5,6,8]);
+ if(kind===0)return problem(t,`Write a do-while loop that adds ${j} to sum, then increases ${j} by one, repeating while ${j} <= ${limit}.`,'Condition belongs at the END and needs a semicolon.',`do {\n    sum += ${j};\n    ${j}++;\n} while (${j} <= ${limit});`,'Remember } while (condition);');
+ if(kind===1)return problem(t,`Use do-while to read a number into ${j} with cin; repeat while ${j} < 0.`,'Input validation: ask again while negative.',`do {\n    cin >> ${j};\n} while (${j} < 0);`,'Read inside do block.');
+ if(kind===2)return problem(t,`Use do-while to print ${j} * 2, then increase ${j} by one; repeat while ${j} < ${limit}.`,'Calculate then update.',`do {\n    cout << ${j} * 2 << endl;\n    ${j}++;\n} while (${j} < ${limit});`,'Print the multiplication result.');
+ if(kind===3)return problem(t,`Use do-while to subtract 5 from balance and increase transactions by one; continue while balance >= 5.`,'Two updates inside do.',`do {\n    balance -= 5;\n    transactions++;\n} while (balance >= 5);`,'End with a semicolon after while(...).');
+ if(kind===4)return problem(t,`Use do-while to print "Enter choice: " and read choice; repeat while choice != 0.`,'Menu-entry loop.',`do {\n    cout << "Enter choice: ";\n    cin >> choice;\n} while (choice != 0);`,'Prompt and read inside loop.');
+ return problem(t,`Use do-while to multiply product by ${j}, then decrement ${j}; continue while ${j} > 0.`,'Multiply then decrement.',`do {\n    product *= ${j};\n    ${j}--;\n} while (${j} > 0);`,'Body executes once before the condition.');
+}
+}
+}
+// Token-aware pattern checker: ignores whitespace/comments, preserves string contents,
+// accepts selected equivalent increment/decrement and arithmetic update forms.
+function lex(s){
+ const t=[];let i=0;
+ while(i<s.length){
+  if(/\s/.test(s[i])){i++;continue}
+  if(s.startsWith('//',i)){while(i<s.length&&s[i]!='\n')i++;continue}
+  if(s.startsWith('/*',i)){const j=s.indexOf('*/',i+2);if(j<0){t.push('UNTERMINATED_COMMENT');break}i=j+2;continue}
+  if(s[i]==='"'||s[i]==="'"){const quote=s[i];let v=quote;i++;let closed=false;while(i<s.length){let c=s[i++];v+=c;if(c==='\\'&&i<s.length){v+=s[i++];continue}if(c===quote){closed=true;break}}t.push(closed?v:'UNTERMINATED_STRING');continue}
+  const match=s.slice(i).match(/^(?:[a-zA-Z_]\w*|\d+(?:\.\d+)?|==|!=|>=|<=|\+\+|--|\+=|-=|\*=|\/=|&&|\|\||<<|>>|::|.)/);
+  t.push(match[0]);i+=match[0].length;
+ }
+ return t;
+}
+function canonical(source){
+ let t=lex(source);
+ // Accept explicit std:: qualification for common input/output names.
+ let p=[];for(let i=0;i<t.length;i++){if(t[i]==='std'&&t[i+1]==='::'&&['cout','cin','endl','fixed','setprecision'].includes(t[i+2])){p.push(t[i+2]);i+=2}else p.push(t[i])}
+ t=p;p=[];
+ for(let i=0;i<t.length;){let a=t[i],b=t[i+1],c=t[i+2],d=t[i+3],e=t[i+4];const id=x=>typeof x==='string'&&/^[a-zA-Z_]\w*$/.test(x);
+  // All equivalent updates normalized to variable += magnitude or variable -= magnitude.
+  if(id(a)&&b==='++'){p.push(a,'+=','1');i+=2;continue}
+  if(a==='++'&&id(b)){p.push(b,'+=','1');i+=2;continue}
+  if(id(a)&&b==='--'){p.push(a,'-=','1');i+=2;continue}
+  if(a==='--'&&id(b)){p.push(b,'-=','1');i+=2;continue}
+  if(id(a)&&b==='='&&c===a&&['+','-','*'].includes(d)&&(id(e)||/^\d+(?:\.\d+)?$/.test(e||''))){p.push(a,{'+':'+=','-':'-=','*':'*='}[d],/^\d+(?:\.\d+)?$/.test(e)?String(Number(e)):e);i+=5;continue}
+  if(id(a)&&b==='='&&(id(c)||/^\d+(?:\.\d+)?$/.test(c||''))&&d==='+'&&e===a){p.push(a,'+=',/^\d+(?:\.\d+)?$/.test(c)?String(Number(c)):c);i+=5;continue}
+  if(id(a)&&['+=','-=','*='].includes(b)&&(id(c)||/^\d+(?:\.\d+)?$/.test(c||''))){p.push(a,b,/^\d+(?:\.\d+)?$/.test(c)?String(Number(c)):c);i+=3;continue}
+  if(a==='<<'&&b==='endl'){p.push('<<',"'\\n'");i+=2;continue}
+  if(a==='<<'&&b==='"\\n"'){p.push('<<',"'\\n'");i+=2;continue}
+  p.push(a);i++;
+ }
+ return p.join('\u001f');
+}
+// Permit a simple optional prompt immediately before a cin statement when the task does not prescribe output.
+// Only literal-text prompt cout statements are ignored; calculations and variable outputs remain checked.
+function stripOptionalInputPrompts(text,q){
+ if(!/\bcin\b/.test(q.answer)||/\bcout\b/.test(q.answer))return text;
+ const t=lex(text), p=[];
+ for(let i=0;i<t.length;){
+  let s=i;
+  // Recognize: cout << "prompt"; OR cout << "prompt" << endl; preceding cin >> ...
+  if(t[i]==='cout'&&t[i+1]==='<<'&&/^"(?:[^"\\]|\\.)*"$/.test(t[i+2]||'')){
+   let j=i+3;
+   if(t[j]==='<<'&&['endl','"\\n"',"'\\n'"].includes(t[j+1]))j+=2;
+   if(t[j]===';'&&t[j+1]==='cin'&&t[j+2]==='>>'){i=j+1;continue}
+  }
+  p.push(t[i++]);
+ }
+ return p.join(' ');
+}
+function matchAnswer(text,q){
+ const clean=stripOptionalInputPrompts(text,q);
+ return [q.answer,...q.alternatives].some(x=>canonical(x)===canonical(clean));
+}
+function diagnose(src,q){const tips=[],add=s=>{if(!tips.includes(s))tips.push(s)};const t=lex(src),topic=q.topic;
+ if(/\b(?:If|IF|Else|ELSE|While|WHILE|For|FOR|Switch|SWITCH|Do|DO|Cin|Cout)\b/.test(src))add('C++ is case-sensitive. Write keywords and cin/cout in lowercase.');
+ if(src.includes('=>')||src.includes('=<'))add('Use >= and <=, not => or =<.');
+ if((src.match(/\(/g)||[]).length!==(src.match(/\)/g)||[]).length)add('Check your parentheses: each ( needs a matching ).');
+ if((src.match(/\{/g)||[]).length!==(src.match(/\}/g)||[]).length)add('Check your braces: each { needs a matching }.');
+ if(/\b(?:if|while|for)\s*\([^)]*\)\s*;/.test(src))add('Do not put a semicolon immediately after an if, while, or for header.');
+ if(/\bcout\s*>>(?!\s*cin)/.test(src))add('cout uses the insertion operator <<, not >>.');
+ if(/\bcin\s*<<\s*/.test(src))add('cin uses the extraction operator >>, not <<.');
+ if(['cin','io'].includes(topic)&&!src.includes('>>'))add('Use >> to read a value with cin.');
+ if(['cout','io','math','if','ifelse','multiway','nested','ternary','switch','while','for','dowhile'].includes(topic)&&q.answer.includes('cout')&&!src.includes('<<'))add('Use << to output values with cout.');
+ if(/\bif\b/.test(q.answer)&&!/\bif\s*\(/.test(src))add('An if condition must be inside parentheses, for example if (n > 6).');
+ if(topic==='multiway'&&!/\belse\s+if\s*\(/.test(src))add('Multiway selection requires else if (condition).');
+ if(topic==='nested'&&(src.match(/\bif\s*\(/g)||[]).length<2)add('Use two if statements, with the inner one inside the outer braces.');
+ if(topic==='nested'&&src.includes('&&'))add('This task specifically requires nested if statements, not &&.');
+ if(topic==='ternary'&&(!src.includes('?')||!src.includes(':')))add('The conditional operator has the form condition ? trueValue : falseValue.');
+ if(topic==='switch'&&!/\bcase\s+\d+\s*:/.test(src))add('Use case 1: with a colon, not a semicolon.');
+ if(topic==='switch'&&!/\bdefault\s*:/.test(src))add('Include the required default: branch.');
+ if(topic==='for'){
+  let header=src.match(/\bfor\s*\(([^)]*)\)/);
+  if(!header)add('The for loop needs for (initialization; condition; update).');
+  else if((header[1].match(/;/g)||[]).length!==2)add('The for header needs exactly two semicolons.');
+ }
+ if(topic==='dowhile'&&!/\}\s*while\s*\([^)]*\)\s*;/.test(src))add('End a do-while loop with } while (condition); including the final semicolon.');
+ if(topic==='while'&&!/\bwhile\s*\(/.test(src))add('Begin the loop with while (condition).');
+ if(q.answer.includes('++')||q.answer.includes('--')||/\+=\s*1|-=\s*1/.test(q.answer))add('An increment by 1 can be written j++, ++j, j += 1, or j = j + 1 (using the requested variable).');
+ if(t.filter(x=>x===';').length!==lex(q.answer).filter(x=>x===';').length){if(/\bcin\b/.test(q.answer)&&/\bcout\s*<</.test(src)&&!/\bcout\b/.test(q.answer))add('An optional input prompt is allowed. Check that each statement ends with a semicolon.');else add('Review the number and placement of semicolons.');}
+ if(!tips.length)add('Review variable names, arithmetic operations, and statement order. Equivalent updates and optional literal input prompts are accepted for relevant exercises.');
+ return tips.slice(0,5);
+}
+const storageKey='psuCppTrainerStatsV3';let stats;try{stats=JSON.parse(localStorage.getItem(storageKey)||'null')}catch(e){}
+if(!stats||typeof stats.attempts!=='number')stats={attempts:0,firstCorrect:0,mastered:0,streak:0,firstTryQuestions:0,log:[]};
+let q,attemptsForQ=0,answered=false,firstAttemptRecorded=false;
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(stats))}catch(e){}}
+function refresh(){ $('attempts').textContent=stats.attempts;$('first').textContent=stats.firstCorrect;$('mastered').textContent=stats.mastered;$('streak').textContent=stats.streak;$('bar').style.width=(stats.firstTryQuestions?100*stats.firstCorrect/stats.firstTryQuestions:0)+'%'}
+function newQ(requested){let topic=requested||$('topic').value;if(topic==='all')topic=pick(topics);let proposed=generate(topic);for(let i=0;q&&canonical(proposed.answer)===canonical(q.answer)&&i<10;i++)proposed=generate(topic);q=proposed;answered=false;attemptsForQ=0;firstAttemptRecorded=false;$('pill').textContent=labels[topic];$('prompt').textContent=q.prompt;$('instructions').textContent=q.instructions;$('editor').value='';$('feedback').className='feedback hidden';$('next').classList.add('hidden');$('check').disabled=false;$('editor').focus()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function message(html,bad=false){$('feedback').className='feedback '+(bad?'bad':'good');$('feedback').innerHTML=html}
+function check(){if(answered)return;const submitted=$('editor').value.trim();if(!submitted){message('<h3>Type some C++ code first.</h3>',true);return}const ok=matchAnswer(submitted,q);stats.attempts++;attemptsForQ++;
+ if(!firstAttemptRecorded){stats.firstTryQuestions++;firstAttemptRecorded=true;if(ok)stats.firstCorrect++}
+ if(ok){answered=true;stats.mastered++;stats.streak++;$('check').disabled=true;message('<h3>✓ Correct! Well done.</h3><p>Your answer matches a supported valid structure for this question.</p><pre>'+esc(q.answer)+'</pre><p>Choose <b>Next similar question</b> to keep practicing.</p>')}
+ else{stats.streak=0;message('<h3>Not yet — review the structure</h3><ul>'+diagnose(submitted,q).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><b>One correct reference answer:</b><pre>'+esc(q.answer)+'</pre><p>Try to type a corrected answer, or choose <b>Next similar question</b>.</p>',true)}
+ $('next').classList.remove('hidden');stats.log.push({topic:q.topic,prompt:q.prompt,submitted,correct:ok,time:new Date().toISOString()});if(stats.log.length>500)stats.log=stats.log.slice(-500);save();refresh();}
+$('check').addEventListener('click',check);$('next').addEventListener('click',()=>newQ(q.topic));$('newQ').addEventListener('click',()=>newQ());$('topic').addEventListener('change',()=>newQ());$('hint').addEventListener('click',()=>message('<h3>Hint</h3><p>'+esc(q.hint)+'</p>'));
+$('reset').addEventListener('click',()=>{if(confirm('Reset progress for this version of the C++ lab?')){stats={attempts:0,firstCorrect:0,mastered:0,streak:0,firstTryQuestions:0,log:[]};save();refresh();newQ()}});
+$('download').addEventListener('click',()=>{const report=`Philander Smith University — Dr. Suzan Anwar — Programming I\nC++ Structure & Problem-Solving Lab v4.1\nStudent: ${$('student').value||'Not provided'}\nDate: ${new Date().toLocaleString()}\nSubmissions: ${stats.attempts}\nCorrect first try: ${stats.firstCorrect}\nProblems mastered: ${stats.mastered}\nFirst-try success: ${stats.firstTryQuestions?(100*stats.firstCorrect/stats.firstTryQuestions).toFixed(1):'0'}%\n\nPractice history:\n`+stats.log.map((e,i)=>`\n${i+1}. ${labels[e.topic]} (${e.correct?'Correct':'Incorrect'})\nPrompt: ${e.prompt}\nStudent code:\n${e.submitted}\n`).join('');const url=URL.createObjectURL(new Blob([report],{type:'text/plain'})),a=document.createElement('a');a.href=url;a.download='PSU_CPP_Programming_I_Progress.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500)});
+const editor=$('editor'),pasteWarning=()=>message('<h3>Type-only practice</h3><p>Paste and drag/drop are disabled. Type the syntax yourself to practice.</p>',true);
+editor.addEventListener('paste',e=>{e.preventDefault();pasteWarning()});editor.addEventListener('drop',e=>{e.preventDefault();pasteWarning()});editor.addEventListener('dragover',e=>e.preventDefault());editor.addEventListener('contextmenu',e=>e.preventDefault());editor.addEventListener('beforeinput',e=>{if(['insertFromPaste','insertFromDrop'].includes(e.inputType)){e.preventDefault();pasteWarning()}});editor.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='v'||e.shiftKey&&e.key==='Insert'){e.preventDefault();pasteWarning()}if(e.key==='Tab'){e.preventDefault();editor.setRangeText('    ',editor.selectionStart,editor.selectionEnd,'end')}});
+
+/* v4: expanded authentic scenarios; the legacy 13-topic practice bank is retained. */
+labels.functions='FUNCTIONS'; labels.debug='DEBUG';labels.trace='OUTPUT TRACE';labels.projects='PROJECT DESIGN';
+topics.push('functions','debug','trace','projects');
+const legacyGenerate=generate;
+const pickOne=pick;
+function makeChallenge(topic,title,description,answer,hint,alternatives=[]){return problem(topic,title,description,answer,hint,alternatives)}
+const advancedBank={
+ ifelse:[
+ () => {const rate=pickOne([12,15,18]),h=pickOne([35,40]);return makeChallenge('ifelse','Overtime payroll: update pay according to hours worked.',`Variables hours, pay are declared. If hours > ${h}, set pay to ${h}*${rate} + (hours-${h})*${rate}*1.5; otherwise hours*${rate}.`, `if (hours > ${h}) { pay = ${h} * ${rate} + (hours - ${h}) * ${rate} * 1.5; } else { pay = hours * ${rate}; }`,'Make two assignments and use a two-way if/else.');},
+ () => makeChallenge('ifelse','Determine whether a number is even or odd.','Assume n is declared. Store 1 in isEven when n is divisible by 2, otherwise store 0.','if (n % 2 == 0) { isEven = 1; } else { isEven = 0; }','Use remainder operator %, and == for equality.'),
+ () => makeChallenge('ifelse','Apply a museum discount.','If age <= 12, charge admission=5; otherwise admission=12.','if (age <= 12) { admission = 5; } else { admission = 12; }','Use if/else and assignment in each branch.'),
+ () => makeChallenge('ifelse','Calculate absolute value without abs().','Use if/else to assign result = -n for negative n; otherwise result = n.','if (n < 0) { result = -n; } else { result = n; }','A negative value must be negated.'),
+ () => makeChallenge('ifelse','Electricity peak-hour surcharge.','If peak == true, set cost = units * 0.25; otherwise cost = units * 0.15.','if (peak == true) { cost = units * 0.25; } else { cost = units * 0.15; }','Compare the Boolean condition then compute cost.'),
+ () => makeChallenge('ifelse','Prevent division by zero.','If divisor is not zero, compute quotient = numerator / divisor; otherwise print the exact text Cannot divide.','if (divisor != 0) { quotient = numerator / divisor; } else { cout << "Cannot divide"; }','Use != 0 before dividing.')
+ ],
+ multiway:[
+ () => makeChallenge('multiway','Classify a battery charge level.','Assume percent is 0 to 100. Set level to 3 for percent >=80, to 2 for >=40, otherwise 1.','if (percent >= 80) { level = 3; } else if (percent >= 40) { level = 2; } else { level = 1; }','Order the thresholds from highest to lowest.'),
+ () => makeChallenge('multiway','Choose a tiered shipping rate.','Set shipping=0 if cart>=100, shipping=5 if cart>=50, otherwise shipping=12.','if (cart >= 100) { shipping = 0; } else if (cart >= 50) { shipping = 5; } else { shipping = 12; }','Three exclusive ranges require else if.'),
+ () => makeChallenge('multiway','Classify a wind speed.','Set category=3 for speed>=75, category=2 for speed>=40, else category=1.','if (speed >= 75) { category = 3; } else if (speed >= 40) { category = 2; } else { category = 1; }','Check high winds first.'),
+ () => makeChallenge('multiway','Choose parking rate by vehicle type.','Set price to 5 if type==1, 8 if type==2, otherwise 12. Use multiway if.','if (type == 1) { price = 5; } else if (type == 2) { price = 8; } else { price = 12; }','Use == for comparison, not =.')
+ ],
+ switch:[
+ () => makeChallenge('switch','ATM menu: set transaction fee.','Switch on action. case 1 fee=0, case 2 fee=3, default fee=-1. Include break statements for cases 1 and 2.','switch (action) { case 1: fee = 0; break; case 2: fee = 3; break; default: fee = -1; }','Use colon after case labels.'),
+ () => makeChallenge('switch','Vending machine selection.','Switch on item. For case 1 set price=2; for case 2 price=4; otherwise price=0. Include break statements.','switch (item) { case 1: price = 2; break; case 2: price = 4; break; default: price = 0; }','Remember break after each non-default case.'),
+ () => makeChallenge('switch','Choose calculator operation.',"Switch on op (char): case '+' sets result=a+b, case '-' sets result=a-b; default result=0. Include breaks.","switch (op) { case '+': result = a + b; break; case '-': result = a - b; break; default: result = 0; }",'Use single quotes around character cases.'),
+ () => makeChallenge('switch','Pick a discount code.','Switch on code (int): case 1 discount=10; case 2 discount=20; default discount=0.','switch (code) { case 1: discount = 10; break; case 2: discount = 20; break; default: discount = 0; }','Follow each case value with :')
+ ],
+ while:[
+ () => makeChallenge('while','Count how many positive inputs were entered.','Assume number was already read. While number != -1, if number > 0 increment positiveCount, then read the next number.','while (number != -1) { if (number > 0) { positiveCount++; } cin >> number; }','A sentinel loop must read the next number in the body.'),
+ () => makeChallenge('while','Sum only even numbers from a sequence.','Assume n already contains the first input. While n != 0, add n to evenTotal only when n is even; read next n.','while (n != 0) { if (n % 2 == 0) { evenTotal += n; } cin >> n; }','Use % 2, and read again inside loop.'),
+ () => makeChallenge('while','Find the sum of digits.','Assume n is a positive int. While n > 0, add its last digit to sum and remove last digit.','while (n > 0) { sum += n % 10; n /= 10; }','Last digit: n % 10. Remove it: n /= 10.'),
+ () => makeChallenge('while','Compute repeated doubling.','While balance < target, double balance and increment years.','while (balance < target) { balance *= 2; years++; }','Update BOTH balance and years.'),
+ () => makeChallenge('while','Count failed password attempts.','Assume guess already read. While guess != pin and attempts < 3, increase attempts and read another guess.','while (guess != pin && attempts < 3) { attempts++; cin >> guess; }','Combine both conditions using &&.'),
+ () => makeChallenge('while','Calculate a factorial using while.','Assume n is nonnegative and i starts at 1, product at 1. Repeat while i <= n: multiply product by i and increment i.','while (i <= n) { product *= i; i++; }','Multiply the accumulator and advance loop counter.'),
+ () => makeChallenge('while','Accumulate electricity readings.','Assume reading is already input. While reading >= 0, add it to total and read the next reading.','while (reading >= 0) { total += reading; cin >> reading; }','-1 or any negative value ends the sentinel loop.')
+ ],
+ for:[
+ () => makeChallenge('for','Compute the sum of squares.','Use a for loop, int i from 1 through n inclusive, add i*i to total.','for (int i = 1; i <= n; i++) { total += i * i; }','Use multiplication in the body.'),
+ () => makeChallenge('for','Create a multiplication table.','Use a for loop, i from 1 to 10 inclusive; print n*i with endl.','for (int i = 1; i <= 10; i++) { cout << n * i << endl; }','The product changes each iteration.'),
+ () => makeChallenge('for','Find a power without pow().','Assume product = 1. Multiply product by base exactly exponent times, using i from 0 to exponent-1.','for (int i = 0; i < exponent; i++) { product *= base; }','Start at zero and multiply exponent times.'),
+ () => makeChallenge('for','Count multiples of three.','Loop i from 1 through n inclusive; if i is divisible by 3, increase count.','for (int i = 1; i <= n; i++) { if (i % 3 == 0) { count++; } }','Use an if inside the loop.'),
+ () => makeChallenge('for','Sum odd integers only.','Use i=1 to i<=n, i++; add i to total only if i is odd.','for (int i = 1; i <= n; i++) { if (i % 2 != 0) { total += i; } }','Odd means i % 2 != 0.'),
+ () => makeChallenge('for','Apply daily savings deposits.','Use int day from 1 through days inclusive. Each day increase savings by dailyDeposit.','for (int day = 1; day <= days; day++) { savings += dailyDeposit; }','Use the repetition count days.'),
+ () => makeChallenge('for','Countdown to a rocket launch.','Loop int seconds from 5 down to 1, decrementing seconds, and display seconds each time.','for (int seconds = 5; seconds >= 1; seconds--) { cout << seconds << endl; }','Decrease the counter.'),
+ () => makeChallenge('for','Calculate the total cost of a shopping basket.','For i from 0 while i < count, increment i. Read a price then add it to total.','for (int i = 0; i < count; i++) { cin >> price; total += price; }','Read an item inside the loop.')
+ ],
+ dowhile:[
+ () => makeChallenge('dowhile','Reject invalid scores.','Read score, then repeat while score < 0 or score > 100. Use a do-while loop.','do { cin >> score; } while (score < 0 || score > 100);','The first read must occur before the condition.'),
+ () => makeChallenge('dowhile','Ask for a nonzero divisor.','Use a do-while loop to read divisor until divisor != 0.','do { cin >> divisor; } while (divisor == 0);','Continue as long as divisor equals zero.'),
+ () => makeChallenge('dowhile','Simple menu replay.','Inside do-while print "Menu" and read choice. Repeat while choice != 0.','do { cout << "Menu"; cin >> choice; } while (choice != 0);','The condition is checked after each menu display.'),
+ () => makeChallenge('dowhile','Validate a quantity.','Read quantity at least once, and repeat as long as quantity < 1.','do { cin >> quantity; } while (quantity < 1);','A do-while ends with a semicolon.'),
+ () => makeChallenge('dowhile','Keep accepting temperatures until a sentinel.','Read temp and add it to total only if temp != -999. Repeat while temp != -999.','do { cin >> temp; if (temp != -999) { total += temp; } } while (temp != -999);','Do not add the sentinel itself.')
+ ],
+ functions:[
+ () => makeChallenge('functions','Create a rectangle area function.','Write only the function double area(double width, double height) that returns width * height.','double area(double width, double height) { return width * height; }','Include return type, parameters, and return statement.'),
+ () => makeChallenge('functions','Write a reusable even-number test.','Write bool isEven(int n) which returns true when n is divisible by 2.','bool isEven(int n) { return n % 2 == 0; }','A bool function returns a Boolean expression.'),
+ () => makeChallenge('functions','Write a function to convert Celsius to Fahrenheit.','Create double toF(double c) returning (c * 9.0 / 5.0) + 32.','double toF(double c) { return c * 9.0 / 5.0 + 32; }','Use floating-point arithmetic.'),
+ () => makeChallenge('functions','Create a function that prints a welcome message.','Write void greet() that prints "Welcome" and a newline.','void greet() { cout << "Welcome" << endl; }','A void function can print output without returning a value.'),
+ () => makeChallenge('functions','Add a bonus using pass-by-reference.','Write void addBonus(int& score) that increases score by 10.','void addBonus(int& score) { score += 10; }','Use & for reference parameter.'),
+ () => makeChallenge('functions','Return the smaller of two integers.','Write int smaller(int a, int b). Use if/else and return the smaller argument.','int smaller(int a, int b) { if (a < b) { return a; } else { return b; } }','There should be a return value for either condition.'),
+ () => makeChallenge('functions','Write a function prototype.','Write a prototype for a double function average that accepts two double parameters.','double average(double a, double b);','A prototype ends with a semicolon; the function body does not appear.'),
+ () => makeChallenge('functions','Compute a discounted price with a function.','Write double finalPrice(double price, double discount) returning price - price*discount.','double finalPrice(double price, double discount) { return price - price * discount; }','Parameters are inputs and the function returns the result.'),
+ () => makeChallenge('functions','Write a square function.','Write int square(int number) that returns the product of number times number.','int square(int number) { return number * number; }','Use a value-returning function.'),
+ () => makeChallenge('functions','Write a reference-based swap helper.','Write void swapValues(int& a, int& b) using temp to exchange a and b.','void swapValues(int& a, int& b) { int temp = a; a = b; b = temp; }','References allow changes to affect the caller.'),
+ () => makeChallenge('functions','Write a function with a default parameter.','Define int totalWithFee(int subtotal, int fee = 5) returning subtotal + fee.','int totalWithFee(int subtotal, int fee = 5) { return subtotal + fee; }','Default parameters go in the parameter list.'),
+ () => makeChallenge('functions','Write a function with two branches.','Write int ticketPrice(int age) that returns 5 when age < 12 and 12 otherwise.','int ticketPrice(int age) { if (age < 12) { return 5; } else { return 12; } }','Return a value on both paths.')
+ ,
+ () => makeChallenge('functions','Create a function that calculates the perimeter of a rectangle.','Write double perimeter(double length, double width). Return twice the sum of length and width.','double perimeter(double length, double width) { return 2 * (length + width); }','First add length and width, then multiply by 2.'),
+ () => makeChallenge('functions','Compute a student final grade.','Write double finalGrade(double exam, double project) that returns 0.6*exam + 0.4*project.','double finalGrade(double exam, double project) { return 0.6 * exam + 0.4 * project; }','Use weighted average and return a double.'),
+ () => makeChallenge('functions','Check whether a person is old enough to vote.','Write bool canVote(int age). Return true for age >= 18; otherwise false.','bool canVote(int age) { return age >= 18; }','A comparison itself evaluates to bool.'),
+ () => makeChallenge('functions','Convert minutes into seconds.','Write int toSeconds(int minutes) returning minutes * 60.','int toSeconds(int minutes) { return minutes * 60; }','Use a value-returning int function.'),
+ () => makeChallenge('functions','Calculate the volume of a box.','Write double volume(double length, double width, double height).','double volume(double length, double width, double height) { return length * width * height; }','Include three typed parameters.'),
+ () => makeChallenge('functions','Output a decorative line.','Write void printLine() that uses a for loop with int i from 0 to less than 5, printing * each time.','void printLine() { for (int i = 0; i < 5; i++) { cout << "*"; } }','A void function can contain a loop.'),
+ () => makeChallenge('functions','Write a function that returns the sum of the first n positive integers.','Write int sumTo(int n) using a for loop with int i starting at 1, and return the total.','int sumTo(int n) { int total = 0; for (int i = 1; i <= n; i++) { total += i; } return total; }','Initialize total before the loop; return afterward.'),
+ () => makeChallenge('functions','Calculate sales tax for a purchase.','Write double addTax(double price, double rate). Return price + price*rate.','double addTax(double price, double rate) { return price + price * rate; }','Return the original price plus tax.'),
+ () => makeChallenge('functions','Write a function that tests a number for positivity.','Write bool isPositive(int value) returning whether value > 0.','bool isPositive(int value) { return value > 0; }','A bool function may directly return a comparison.'),
+ () => makeChallenge('functions','Write a greeting with a name parameter.','Write void greetStudent(string name) that prints Hello followed by a space and the name. Assume string and iostream are available.','void greetStudent(string name) { cout << "Hello " << name; }','Use cout with a string literal and the parameter.'),
+ () => makeChallenge('functions','Write a function prototype with reference parameters.','Write the prototype for void swapScores accepting two int references named a and b.','void swapScores(int& a, int& b);','A prototype ends with a semicolon, not a body.'),
+ () => makeChallenge('functions','Write a function call using a return value.','Assume int triple(int n) is already defined. Call triple with score and store the returned result in result, which is already declared.','result = triple(score);','Use the function name followed by (argument).'),
+ () => makeChallenge('functions','Call a void function.','Assume void showMenu() is defined. Write a statement that calls showMenu with no arguments.','showMenu();','A function call has parentheses and ends in a semicolon.'),
+ () => makeChallenge('functions','Update a savings balance using a reference parameter.','Write void deposit(double& balance, double amount) that adds amount to balance.','void deposit(double& balance, double amount) { balance += amount; }','Only balance needs the reference symbol &.'),
+ () => makeChallenge('functions','Choose the highest of two values.','Write int maximum(int a, int b) that uses if/else to return the larger integer.','int maximum(int a, int b) { if (a >= b) { return a; } else { return b; } }','Both branches must return a value.'),
+ () => makeChallenge('functions','Write a function to calculate a square using a while loop.','Write int squareByAdding(int n) that assumes n >= 0, uses int i=0 and a while loop to add n exactly n times, then returns total.','int squareByAdding(int n) { int total = 0; int i = 0; while (i < n) { total += n; i++; } return total; }','A loop can multiply through repeated addition.'),
+ () => makeChallenge('functions','Calculate the cost of a movie ticket based on age.','Write double moviePrice(int age) returning 6.0 when age < 13 and 12.0 otherwise.','double moviePrice(int age) { if (age < 13) { return 6.0; } else { return 12.0; } }','Use a value-returning function with both paths.'),
+ () => makeChallenge('functions','Use a default discount rate.','Write double discountAmount(double price, double rate = 0.10) returning price * rate.','double discountAmount(double price, double rate = 0.10) { return price * rate; }','The optional default parameter comes last.'),
+ () => makeChallenge('functions','Print the square of a supplied number.','Write void showSquare(int n) that prints n*n followed by endl.','void showSquare(int n) { cout << n * n << endl; }','Use void and cout to display the result.'),
+ () => makeChallenge('functions','Make a function that doubles the caller’s number.','Write void doubleNumber(int& value) that multiplies value by 2.','void doubleNumber(int& value) { value *= 2; }','Use a reference parameter so the original changes.'),
+ () => makeChallenge('functions','Check if a grade earns a pass.','Write bool passed(int grade) that returns true when grade >= 70.','bool passed(int grade) { return grade >= 70; }','A relational expression produces a bool.'),
+ () => makeChallenge('functions','Calculate a power of three.','Write int cube(int n) that returns n*n*n.','int cube(int n) { return n * n * n; }','Multiply n by itself three times.'),
+ () => makeChallenge('functions','Compute restaurant tip.','Write double tipAmount(double bill, double percent) returning bill*percent/100.0.','double tipAmount(double bill, double percent) { return bill * percent / 100.0; }','Convert percent to fraction by dividing by 100.0.'),
+ () => makeChallenge('functions','Compute total pay for hours and hourly rate.','Write double regularPay(double hours, double rate) returning hours*rate.','double regularPay(double hours, double rate) { return hours * rate; }','Return the product of two double parameters.'),
+ () => makeChallenge('functions','Count numbers divisible by three.','Write int countMultiples(int n) that loops int i from 1 through n and counts values i%3==0.','int countMultiples(int n) { int count = 0; for (int i = 1; i <= n; i++) { if (i % 3 == 0) { count++; } } return count; }','Combine a for loop, if, and a final return.'),
+ () => makeChallenge('functions','Write a void function with two parameters.','Write void printSum(int a, int b) that displays a+b using cout.','void printSum(int a, int b) { cout << a + b; }','No return statement required for a void function.'),
+ () => makeChallenge('functions','Write a prototype for a Boolean checker.','Write a prototype for bool isOdd(int n).','bool isOdd(int n);','A prototype has a semicolon, but no braces.'),
+ () => makeChallenge('functions','Build a menu selection helper.','Write int menuFee(int option) using switch: case 1 returns 5, case 2 returns 10, default returns 0.','int menuFee(int option) { switch (option) { case 1: return 5; case 2: return 10; default: return 0; } }','Returning from a case exits the function.'),
+ () => makeChallenge('functions','Write a function that calculates rectangle diagonal squared.','Write double diagonalSquared(double a, double b) returning a*a+b*b.','double diagonalSquared(double a, double b) { return a * a + b * b; }','Pythagorean formula, without taking square root.'),
+ () => makeChallenge('functions','Trace a function with a local value.','Write the function int increase(int value) that adds 5 to value and returns the result.','int increase(int value) { value += 5; return value; }','This modifies only the local copy and returns the new value.')
+ ],
+ debug:[
+ () => makeChallenge('debug','Fix the broken input statement.','Incorrect code: cin << age;\nType the corrected single statement.','cin >> age;','Input uses >>.'),
+ () => makeChallenge('debug','Fix the accidental assignment in a condition.','Incorrect code: if (x = 5) { cout << "Equal"; }\nWrite a corrected if block that compares x to 5.','if (x == 5) { cout << "Equal"; }','Use == for equality.'),
+ () => makeChallenge('debug','Fix a misplaced semicolon after while.','Incorrect code: while (n > 0); { n--; }\nWrite a correct while block.','while (n > 0) { n--; }','No semicolon after the while header.'),
+ () => makeChallenge('debug','Fix a missing semicolon in a for header.','Incorrect code: for (int i=0 i<5; i++) { cout << i; }\nWrite the corrected loop.','for (int i = 0; i < 5; i++) { cout << i; }','for headers contain two semicolons.'),
+ () => makeChallenge('debug','Fix a missing break in switch.','Write a switch on choice with case 1 setting price=5 and break; case 2 setting price=10 and break; default price=0.','switch (choice) { case 1: price = 5; break; case 2: price = 10; break; default: price = 0; }','Break after each explicit case.'),
+ () => makeChallenge('debug','Fix the loop decrement.','Incorrect code: int i=3; while(i>0) { cout << i; i++; }\nWrite a fixed loop that counts down.','int i = 3; while (i > 0) { cout << i; i--; }','The update must move toward the stopping condition.'),
+ () => makeChallenge('debug','Fix function return type.','Incorrect: void doubleIt(int n) { return n*2; }\nMake the function return an int.','int doubleIt(int n) { return n * 2; }','Returning an integer requires int return type.')
+ ],
+ trace:[
+ () => makeChallenge('trace','Predict the printed number.','Code: int a=3; int b=2; if(a>b){ a=a*b; } cout << a;\nWrite only the output number.','6','3 > 2, so multiply.'),
+ () => makeChallenge('trace','Trace a loop accumulator.','Code: int total=0; for(int i=1;i<=4;i++){total+=i;} cout<<total;\nWrite only the output number.','10','1+2+3+4=10.'),
+ () => makeChallenge('trace','Trace an if/else decision.','Code: int n=13; if(n%2==0) cout<<2; else cout<<3;\nWrite only the number printed.','3','13 is odd.'),
+ () => makeChallenge('trace','Trace a do-while loop.','Code: int i=0; do {i+=2;} while(i<5); cout<<i;\nWrite only the number printed.','6','2,4,6 then stop.'),
+ () => makeChallenge('trace','Trace a function call.','Code: int cube(int n){return n*n*n;} cout<<cube(3);\nWrite only the output number.','27','3^3=27.'),
+ () => makeChallenge('trace','Trace short-circuit logic.','Code: int x=4; if(x>5 && x<9) cout<<1; else cout<<0;\nWrite only the number printed.','0','Both sides of && must be true.')
+ ],
+ projects:[
+ () => makeChallenge('projects','Create a complete tip calculator.','Write a full main program that reads bill, computes tip at 15%, then prints bill+tip. Include iostream and using namespace std.','\x23include <iostream>\nusing namespace std;\nint main() { double bill; cin >> bill; double tip = bill * 0.15; cout << bill + tip; return 0; }','Use a double variable, multiplication by 0.15, and cout.'),
+ () => makeChallenge('projects','Create a complete rectangle calculator.','Write a full main program that reads width and height, then prints width*height.','\x23include <iostream>\nusing namespace std;\nint main() { double width, height; cin >> width >> height; cout << width * height; return 0; }','Read two doubles and multiply them.'),
+ () => makeChallenge('projects','Create a complete pass/fail checker.','Write full main: read an int score, print Passed if score>=70, otherwise print Failed.','\x23include <iostream>\nusing namespace std;\nint main() { int score; cin >> score; if (score >= 70) { cout << "Passed"; } else { cout << "Failed"; } return 0; }','Wrap the selection in int main.'),
+ () => makeChallenge('projects','Create a full square-number loop.','Write full main program that reads integer n, then for i=1 through n inclusive prints i*i each line.','\x23include <iostream>\nusing namespace std;\nint main() { int n; cin >> n; for (int i = 1; i <= n; i++) { cout << i * i << endl; } return 0; }','Read n, then run a for loop.'),
+ () => makeChallenge('projects','Create a full function-driven converter.','Write full program with double toF(double c) returning c*9.0/5.0+32; main reads c and prints toF(c).','\x23include <iostream>\nusing namespace std;\ndouble toF(double c) { return c * 9.0 / 5.0 + 32; }\nint main() { double c; cin >> c; cout << toF(c); return 0; }','Define function before main, then call it.')
+ ]
+};
+const recentQuestions=[];
+generate=function(topic){
+ if(advancedBank[topic] && (['functions','debug','trace','projects'].includes(topic) || Math.random()<0.50)){
+   let pool=advancedBank[topic], selected=pick(pool), result=selected();
+   for(let tries=0;tries<10 && recentQuestions.includes(result.prompt);tries++){selected=pick(pool);result=selected()}
+   recentQuestions.push(result.prompt);if(recentQuestions.length>12)recentQuestions.shift();
+   return result;
+ }
+ return legacyGenerate(topic);
+};
+// Navigation keeps the original teacher-friendly practice checker and progress system intact.
+function showCoursePage(page){
+ document.querySelectorAll('.course-tab').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+ document.getElementById('practiceShell').classList.toggle('hide',page!=='practice');
+ document.querySelectorAll('.learn-page').forEach(s=>s.classList.toggle('active',s.id==='lesson-'+page));
+ window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelectorAll('.course-tab').forEach(b=>b.addEventListener('click',()=>showCoursePage(b.dataset.page)));
+document.querySelectorAll('[data-topic-go]').forEach(b=>b.addEventListener('click',()=>{
+ document.getElementById('topic').value=b.dataset.topicGo;
+ showCoursePage('practice');newQ(b.dataset.topicGo);
+}));
+
+
+// Chapter 6 interactive concept checks (not included in progress scores).
+const functionChecks=[
+ ['Which is a valid function prototype?',['int add(int a, int b);','int add(int a, int b) {','add(int a, int b);'],0,'A prototype declares the return type, name, and parameters; it ends with a semicolon.'],
+ ['What does a return statement do in int square(int n)?',['Prints automatically','Sends a value back to the caller','Creates a global variable'],1,'return sends the calculated value to the calling expression.'],
+ ['In square(6), what is 6?',['Formal parameter','Return type','Actual argument'],2,'The value supplied in the call is an actual argument.'],
+ ['Which function can update the caller’s score?',['void bonus(int score)','void bonus(int& score)','int bonus(int score) without a return'],1,'The & makes score a reference parameter.'],
+ ['What does void mean in a function header?',['No value is returned to the caller','No parameters allowed','The function cannot print'],0,'void functions can print or update reference parameters but do not return a value.'],
+ ['Which is valid function overloading?',['Two add functions with only different return types','Two add functions with different parameter lists','Two identical add(int) definitions'],1,'Overloading requires different parameter lists, not merely different return types.'],
+ ['What is the value of x after void change(int n){n=99;} is called with x=5?',['99','5','0'],1,'The parameter receives a copy. Changing it does not change x.'],
+ ['If a function is defined after main, what should usually appear before main?',['A prototype','A second main function','An extra return statement'],0,'A prototype allows the compiler to check a call before seeing the definition.']
+];
+(function renderFunctionChecks(){const host=document.getElementById('functionQuiz'); if(!host)return;
+ functionChecks.forEach(([q,opts,correct,why],i)=>{const item=document.createElement('div');item.className='function-question';const title=document.createElement('p');title.innerHTML='<b>'+(i+1)+'. '+esc(q)+'</b>';item.append(title); const choices=document.createElement('div');choices.className='quiz-choices';const result=document.createElement('p');result.setAttribute('aria-live','polite');result.className='micro';opts.forEach((opt,j)=>{const btn=document.createElement('button');btn.type='button';btn.className='secondary';btn.textContent=opt;btn.onclick=()=>{result.textContent=(j===correct?'✓ Correct! ':'Not quite. ')+why;result.style.color=j===correct?'#0b714e':'#a72938';};choices.append(btn)});item.append(choices,result);host.append(item)})})();
+
+refresh();newQ();
+</script></body></html>
